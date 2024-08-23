@@ -12,7 +12,7 @@ this very simple script does the following:
 
 rclone obviously needs to be installed on the host.
 
-## Installation
+## Installation and usage
 
 ```bash
 pip3 install git+https://github.com/MrYakobo/rclone-kiosk.git
