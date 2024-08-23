@@ -1,0 +1,6 @@
+rclone.conf
+shit
+*.egg-info
+__pycache__
+build
+venv

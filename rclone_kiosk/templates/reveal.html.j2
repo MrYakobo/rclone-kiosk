@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="google" content="notranslate">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slidedeck</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css"
+        integrity="sha512-V5fKCVKOFy36w8zJmLzPH5R6zU6KvuHOvxfMRczx2ZeqTjKRGSBO9yiZjCKEJS3n6EmENwrH/xvSwXqxje+VVA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.js"
+        integrity="sha512-4TbxHVUZM3pE/X0OGqnsz0N8bf1+g5p8x1SHHw3g0wh9dzjPZ+jyQn5qXJ62r0vXTKJ4at4ljO2d/7X2REIdAQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            {% for file in assets %}
+            {% if file.mimetype is none %}
+            {# do nothing #}
+            {% else %}
+            {% if not ("image" in file.mimetype or "video" in file.mimetype) %}
+            {% else %}
+            <section>
+                <div class="slide">
+                    {% if "image" in file.mimetype %}
+                    <img src="{{ file.webroot_filename }}">
+                    {% elif "video" in file.mimetype %}
+                    <video muted>
+                        <source src="{{ file.webroot_filename }}">
+                    </video>
+                    {% endif %}
+                </div>
+            </section>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+<style>
+    img,
+    video {
+        aspect-ratio: 16/9;
+        object-fit: contain;
+        width: 100%;
+    }
+
+    .reveal .slides>section {
+        padding: 0;
+    }
+</style>
+<script>
+    Reveal.initialize({
+        pause: false,
+        autoSlide: 10000,
+        loop: true,
+        center: true,
+        transition: 'fade',
+        autoplaymedia: true,
+        controls: false,
+        controlsTutorial: false,
+        slideNumber: "c / t",
+        width: 1920,
+        height: 1080,
+        margin: 0.02
+    });
+</script>
+
+</html>
