@@ -23,7 +23,7 @@ rclone-kiosk --config rclone.conf
 
 the configuration is done 100% in rclone toml.
 
-```toml
+```
 [source]
 type = drive
 scope = drive.readonly
